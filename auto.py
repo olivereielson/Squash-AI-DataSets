@@ -1,3 +1,5 @@
+import glob
+
 import cv2
 import os
 import shutil
@@ -14,7 +16,6 @@ files=file.split("\n")
 show_image=True
 
 current_index=0
-
 
 
 
@@ -44,6 +45,7 @@ while show_image:
 
     cv2.putText(img,str(current_index)+"---"+str(files.__len__()) , (10, 50), cv2.FONT_HERSHEY_COMPLEX_SMALL, 5, 255)
 
+    #img=cv2.resize(img,(800,800))
     cv2.imshow("Image", img)
     t=cv2.waitKey(0)
 

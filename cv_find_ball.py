@@ -22,7 +22,7 @@ for file in glob.glob("/Users/olivereielson/Desktop/i/*.MP4"):
 
     frame_count = 0
     save_count=0
-    back_sub = cv2.createBackgroundSubtractorMOG2(history=1000, varThreshold=100, detectShadows=False)
+    back_sub = cv2.createBackgroundSubtractorMOG2(history=1000, varThreshold=300, detectShadows=False)
 
     kernel = np.ones((20, 20), np.uint8)
 
@@ -78,7 +78,7 @@ for file in glob.glob("/Users/olivereielson/Desktop/i/*.MP4"):
 
             #print(height)
 
-            frame=cv2.rotate(frame,cv2.ROTATE_90_COUNTERCLOCKWISE)
+            #frame=cv2.rotate(frame,cv2.ROTATE_90_CLOCKWISE)
 
 
 
@@ -173,12 +173,12 @@ for file in glob.glob("/Users/olivereielson/Desktop/i/*.MP4"):
 
 
 
-            if h<200 and w<200 and x>cut0ff:
+            if h<200 and w<200 and x>cut0ff and w>5 and h>5:
 
 
                 save_count=save_count+1
 
-                if save_count %13 ==0:
+                if save_count %7 ==0:
                     file_name = str(frame_count) + "--" + str(datetime.now()).replace(".", "-").replace(" ", "-").replace("/", "-").replace("/", "-")
                     cv2.imwrite("/Users/olivereielson/Desktop/ball test/" + file_name + ".jpg", frame)
                     f = open("/Users/olivereielson/Desktop/ball test/test_ball.txt", "a")
@@ -193,7 +193,7 @@ for file in glob.glob("/Users/olivereielson/Desktop/i/*.MP4"):
 
 
                 if Back_Hand:
-                    cv2.rectangle(frame, (x, height-y), (x + w, (height-y) - h), (0, 255, 0), 5)
+                    cv2.rectangle(frame, (x, height-y), (x + w, (height-y) - h), (0, 255, 0), 20)
                 else:
                     cv2.rectangle(frame, (x, y), (x + w,y+ h), (0, 255, 0), 5)
 
